@@ -1,0 +1,12 @@
+name: rec_ping
+rules:
+  - method: POST
+    path: /rce/rce_ping.php
+    follow_redirects: false
+    body: ipaddress=TpwEkPjinI%26set+%2FA+813524976%2B949487795&submit=ping
+    expression: response.status==200
+detail:
+  type: sqldet
+  paramkey: ipaddress
+  payload: TpwEkPjinI&set /A 813524976+949487795
+  

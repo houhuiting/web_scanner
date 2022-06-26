@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="content-type" content="text/html" charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="static/img/favicon.ico">
+  <script src="static/js/jquery-3.5.1.min.js"></script>
+  <script src="static/js/bootstrap.min.js"></script>
+  <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <title>Web 漏洞扫描</title>
+</head>
+<body>
+  <header id="header">
+    <div class="navbar" style="background-color: ghostwhite">
+      <div class="container">
+        <div class="navbar-header">
+          <h1><a class="navbar-brand" href="index.html">在线Web漏洞扫描系统</a></h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-0"></div>
+      <div class="col-md-6 col-sm-12" style="margin-top: 50px;">
+        <form role="form" method="POST" action="start">
+          <div class="form-group">
+            <label class="control-label" for="url"></label>
+            <div>
+              <input class="form-control" name="url" id="url" type="text" value="" placeholder="请输入要扫描的URL" required/>
+              <span class="help-block text-danger"></span>
+            </div>
+          </div>
+          <div class="form-inline form-group">
+              <label class="control-label" style="margin-right: 20px" for="targetType">目标类型:</label>
+              <select id="targetType" class="form-control" name="targetType" required>
+                  <option value="single">单个URL</option>
+                  <option value="all">整个网站</option>
+              </select>
+              <label class="control-label" style="margin-left: 40px; margin-right: 20px;" for="maxThread">最大线程数: </label>
+              <input class="form-control" name="maxThread" id="maxThread" type="number" max="256" min="0" value="5" required>
+          </div>
+          <div class="form-group">
+              <label class="checkbox-inline"><input type="checkbox" name="sql">sql注入</label>
+              <label class="checkbox-inline"><input type="checkbox" name="xss">XSS</label>
+              <label class="checkbox-inline"><input type="checkbox" name="csrf">CSRF</label>
+              <label class="checkbox-inline"><input type="checkbox" name="fileUpload">文件上传</label>
+              <label class="checkbox-inline"><input type="checkbox" name="brute">暴力破解</label>
+          </div>
+
+          <div class="form-group text-center">
+            <button class="btn btn-success" type="submit">一键扫描</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer class="text-center fixed-bottom" style="color: white; background-color: black;">
+    <hr style="margin-top: 0;"/>
+    <p>@copyright 2020-2020 在线Web漏洞扫描系统 designed by: 李子祎, 杨博, 侯慧婷, 田洋瑞, 裴士景, 万达, 陈爽</p>
+</footer>
+</body>
+</html>

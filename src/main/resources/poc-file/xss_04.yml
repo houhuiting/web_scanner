@@ -1,0 +1,17 @@
+name: xss_04
+rules:
+  - method: GET
+    path: /xss/xss_04.php
+    follow_redirects: false
+    body: message=gheyvkzu&submit=submit
+    expression: response.status==200 && lengthDiff
+  - method: GET
+    path: /xss/xss_04.php
+    follow_redirects: false
+    body: message=1&submit=submit
+    expression: response.status==200 && lengthDiff
+
+detail:
+  type: Form bypass
+  paramkey: message
+  payload: ‘-prompt(1)-’

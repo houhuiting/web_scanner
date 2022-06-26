@@ -1,0 +1,16 @@
+name: xss_reflected_get
+rules:
+  - method: GET
+    path: /xss/xss_reflected_get.php
+    follow_redirects: false
+    body: message=%3CScRiPt%3Ebkoyfngjnh%3C%2FScRiPt%3E&submit=submit
+    expression: response.status==200 && lengthDiff
+  - method: GET
+    path: /xss/xss_reflected_get.php
+    follow_redirects: false
+    body: message=1&submit=submit
+    expression: response.status==200 && lengthDiff
+detail:
+  type: xss
+  paramkey: message
+  payload: <ScRiPt>alert(1)</ScRiPt>

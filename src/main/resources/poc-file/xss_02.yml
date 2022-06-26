@@ -1,0 +1,16 @@
+name: xss_02
+rules:
+  - method: GET
+    path: /xss/xss_02.php
+    follow_redirects: false
+    body: message=javascript%3Aykelmrtg&submit=submit
+    expression: response.status==200 && lengthDiff
+  - method: GET
+    path: /xss/xss_02.php
+    follow_redirects: false
+    body: message=1%3Aykelmrtg&submit=submit
+    expression: response.status==200 && lengthDiff
+detail:
+  type: xss
+  paramkey: message
+  payload: javascript:prompt(1)//

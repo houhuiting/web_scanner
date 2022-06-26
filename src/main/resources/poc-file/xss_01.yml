@@ -1,0 +1,10 @@
+name: xss_01
+rules:
+  - method: GET
+    path: /xss/xss_01.php
+    follow_redirects: false
+    body: <sCrIpT>alert(1)</ScRiPt>
+    expression: response.status==200 && response.body.bcontains(b'~89025ce36e1ea3156a0ea685cfea8ae')
+detail:
+  type: xss
+  paramkey: message

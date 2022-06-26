@@ -1,0 +1,16 @@
+name: op2_login
+rules:
+  - method: POST
+    path: /overpermission/op2/op2_login.php
+    follow_redirects: false
+    body: password=123456&submit=Login&username=admin
+    expression: response.status==200 && lengthDiff
+  - method: POST
+    path: /overpermission/op2/op2_login.php
+    follow_redirects: false
+    body: password=1&submit=Login&username=admin
+    expression: response.status==200 && lengthDiff
+detail:
+  type: brute_force
+  paramkey: password && username
+  payload: password=123456 && username=admin

